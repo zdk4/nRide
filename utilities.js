@@ -8,12 +8,12 @@ var secret = 'nRide2018';
 
 //var transporter = nodemailer.createTransport(smtConfig);
 var transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    // port: 587,
+    host: 'in-v3.mailjet.com',
+    port: 587,
     //secure: false, // true for 465, false for other ports
     auth: {
-        user: 'zdki04@gmail.com', // generated ethereal user
-        pass: 'zadki005' // generated ethereal password
+        user: 'f787bfa00af06aeedc71f0669e95c934', // generated ethereal user
+        pass: '423f49d5596186b2c927b409cd2104b2' // generated ethereal password
     }
 });
 
@@ -42,7 +42,7 @@ exports.createToken= function(user){
 exports.sendEmailActivateAccount = function (emailData, callback) {
     //send mail with options
     var mail = {
-        from: 'nRide <nride_app@hotmail.com>',
+        from: 'nRide <misticor@hotmail.com>',
         to: emailData.toMail,
         subject: 'Activación cuenta nRide',
         // <a href=" '+emailData.tokenUrl+' ">Click aqui!!</a>

@@ -5,7 +5,7 @@ const portalSession= require('cookie-session');
 var userNride = require('../models/user')//Para utlizar el modelo usuario
 var utl = require('../utilities')
 var formidable = require("express-formidable")
-  var server = 'https://lit-retreat-19835.herokuapp.com/api/';
+  var server = 'https://nride.herokuapp.com/api/';
 //var server = 'http://localhost:3001/api/';
 
 

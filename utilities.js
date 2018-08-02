@@ -9,8 +9,8 @@ var secret = 'nRide2018';
 //var transporter = nodemailer.createTransport(smtConfig);
 var transporter = nodemailer.createTransport({
     host: 'in-v3.mailjet.com',
-    port: 587,
-    //secure: false, // true for 465, false for other ports
+    port: 465,
+    secure: true, // true for 465, false for other ports
     auth: {
         user: 'f787bfa00af06aeedc71f0669e95c934', // generated ethereal user
         pass: '423f49d5596186b2c927b409cd2104b2' // generated ethereal password

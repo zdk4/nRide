@@ -42,7 +42,7 @@ exports.createToken= function(user){
 exports.sendEmailActivateAccount = function (emailData, callback) {
     //send mail with options
     var mail = {
-        from: 'nRide <misticor@hotmail.com>',
+        from: 'nRide <nride_app@hotmail.com >',
         to: emailData.toMail,
         subject: 'Activación cuenta nRide',
         // <a href=" '+emailData.tokenUrl+' ">Click aqui!!</a>

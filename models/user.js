@@ -12,15 +12,18 @@ const UserNride = new Schema({
     createDate: Number,//checar estos antes
     Name: String,
     Addres:String,
-    State: String,
+    State: Number,// rider 1, usuario 2    // cambiarle nombre de state por otro
     Birthdate: String,
-    StateLives: Number,//estado donde vive pero su ID
+    StateLives: String,
+    _idStateLives: Number,//estado donde vive pero su ID
     University: String,
+    _idUniversity: String,
     Phone: String,
     Password: { type: String, select:true},//false contraseña no envie al cliente en false
     ImageProfile: String,
     IDUniveristy: Number,
     CarrerUniversity: String,
+    _idCarrerUniversity: Number,// id de la carrera
     Email: { type: String, unique: true, lowercase:true},
     Constancy: String,//Constrancia de estudios
     Recipt:String,//Recibo de pago

@@ -32,7 +32,7 @@ function saveUser(req, res){
     user.Email = req.body.Email;
     user.Constancy = req.body.Constancy;
     user.Recipt =  req.body.Recipt;
-    user.emailValidate =  false;
+    user.emailValidate =  true;
     user.token =  token;
         //Valida email
         userNride.findOne({Email: req.body.Email.toLowerCase()}, (error, result) =>{

@@ -5,8 +5,8 @@ const portalSession= require('cookie-session');
 var userNride = require('../models/user')//Para utlizar el modelo usuario
 var utl = require('../utilities')
 var formidable = require("express-formidable")
-  var server = 'https://nride.herokuapp.com/api/';
-//var server = 'http://localhost:3001/api/';
+  // var server = 'https://nride.herokuapp.com/api/';
+var server = 'http://localhost:3001/api/';
 
 
 //Para registrar un usuario
@@ -21,15 +21,18 @@ function saveUser(req, res){
     user.State = req.body.State;
     user.Birthdate = req.body.Birthdate;
     user.StateLives = req.body.StateLives;
+    user._idStateLives = req.body._idStateLives;
     user.University = req.body.University;
+    user._idUniversity = req.body._idUniversity;
     user.Phone = req.body.Phone;
     user.ImageProfile = req.body.ImageProfile;
     user.IDUniveristy = req.body.IDUniveristy;
     user.CarrerUniversity = req.body.CarrerUniversity;
+    user._idCarrerUniversity = req.body._idCarrerUniversity;
     user.Email = req.body.Email;
     user.Constancy = req.body.Constancy;
     user.Recipt =  req.body.Recipt;
-    user.emailValidate =  req.body.emailValidate;
+    user.emailValidate =  false;
     user.token =  token;
         //Valida email
         userNride.findOne({Email: req.body.Email.toLowerCase()}, (error, result) =>{
@@ -221,9 +224,10 @@ function resetPassword(req, res){
                                     //enviar email de nueva contraseña
                                     var EmailSend =
                                         {
-                                            Body:"Hola "+user.Name+", tu contraseña temporal es la siguiente: "+temporalPass,
+                                            name:user.Name,
+                                            password:temporalPass,
                                             toMail:user.Email,
-                                            Subject:"Restablecer contraseña"
+                                            subject:"Restablecer contraseña"
                                         }
 
                                     utl.SendEmail(EmailSend, function(eMail, rMail){

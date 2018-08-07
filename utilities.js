@@ -6,8 +6,7 @@ var hbs = require('nodemailer-express-handlebars');
 var fs = require('fs');
 var secret = 'nRide2018';
 
-//var transporter = nodemailer.createTransport(smtConfig);
-var transporter = nodemailer.createTransport({
+var smtConfig = {
     host: 'in-v3.mailjet.com',
     port: 465,
     secure: true, // true for 465, false for other ports
@@ -15,8 +14,8 @@ var transporter = nodemailer.createTransport({
         user: 'f787bfa00af06aeedc71f0669e95c934', // generated ethereal user
         pass: '423f49d5596186b2c927b409cd2104b2' // generated ethereal password
     }
-});
-
+};
+var transporter = nodemailer.createTransport(smtConfig);
 
 exports.createToken= function(user){
 
@@ -40,23 +39,33 @@ exports.createToken= function(user){
 };
 
 exports.sendEmailActivateAccount = function (emailData, callback) {
+    // template
+    var options = {
+        viewEngine: {
+            extname: '.hbs',
+            layoutsDir: './Templates',
+            partialsDir : './Templates'
+        },
+        viewPath: './Templates',
+        extName: '.hbs'
+    }
+    transporter.use('compile', hbs(options))
     //send mail with options
     var mail = {
         from: 'nRide <nride_app@hotmail.com >',
         to: emailData.toMail,
         subject: 'Activación cuenta nRide',
-        // <a href=" '+emailData.tokenUrl+' ">Click aqui!!</a>
-        html: '<b>Bienvenido '+emailData.name +'<br>Da click en el siguiente enlace para activar tu ceunta:<a href=" '+emailData.tokenUrl+' ">Click aqui!!</a><br>'+emailData.tokenUrl+'</b>'
-        // template: 'ActivateAccount',
-        /*context: {
-            name: Data.name,
-            token: Data.tokenUrl
-        }*/
+        template: 'ActivateAccess',
+       // html: '<b>Bienvenido '+emailData.name +'<br>Da click en el siguiente enlace para activar tu ceunta:<a href=" '+emailData.tokenUrl+' ">Click aqui!!</a><br>'+emailData.tokenUrl+'</b>'
+        context: {
+            name: emailData.name,
+            token: emailData.tokenUrl
+        }
     }
     transporter.sendMail(mail, function (error, response) {
         if(error)
         {
-            console.log("funcion transporter : "+error);
+            console.log("funcion smtConfig : "+error);
         }
         else{
             // console.log(response)
@@ -88,27 +97,36 @@ exports.generatePassword = function(callback){
 }
 
 exports.SendEmail = function(emailData, callback){
-    /*
- {
-   "Body":"",
-   "toMail":"",
-   "Subject"
- }
- */
-
-    var mailOptions = {
-        from: 'nRide <nride_app@hotmail.com>',
-        to: emailData.toMail,
-        subject: emailData.Subject,
-        text: emailData.Body
+    var options = {
+        viewEngine: {
+            extname: '.hbs',
+            layoutsDir: './Templates',
+            partialsDir : './Templates'
+        },
+        viewPath: './Templates',
+        extName: '.hbs'
     }
-    transporter.sendMail(mailOptions, function (error, response) {
+
+    transporter.use('compile', hbs(options))
+    //send mail with options
+    var mail = {
+        from: 'nRide <nride_app@hotmail.com >',
+        to: emailData.toMail,
+        subject: emailData.subject,
+        template: 'PasswordForget',
+        // html: '<b>Bienvenido '+emailData.name +'<br>Da click en el siguiente enlace para activar tu ceunta:<a href=" '+emailData.tokenUrl+' ">Click aqui!!</a><br>'+emailData.tokenUrl+'</b>'
+        context: {
+            name: emailData.name,
+            password: emailData.password
+        }
+    }
+    transporter.sendMail(mail, function (error, response) {
         if(error)
         {
-            console.log("Error al enviar email en Sen Email : "+error);
+            console.log("funcion smtConfig : "+error);
         }
         else{
-             console.log('Email enviado de Sen Email')
+            // console.log(response)
         }
         transporter.close();
     });

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #CardWelcome {
+            height: 450px;
+            width: 350px;
+            background: #ED7527;
+            margin-left: 35%;
+        }
+        #CardWelcome .containerImage {
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            text-align: center;
+        }
+        #CardWelcome #container {
+            width: 100%;
+            height: 50%;
+            text-align: center;
+        }
+        #CardWelcome #container img {
+            width: 180px;
+        }
+        #CardWelcome #container label, #CardWelcome #container h1 {
+            color: white;
+            font-family: "Calibri", sans-serif;
+            margin: 2px;
+        }
+        #CardWelcome #container label {
+            font-size: 20px;
+        }
+        #CardWelcome #container a:link {
+            cursor: pointer;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div id="CardWelcome">
+    <div id="container">
+        <img src="https://res.cloudinary.com/nride/image/upload/v1533308710/nRide/logo_blanco.png" alt="">
+    </div>
+    <div id="container">
+        <div>
+            <h1 for="">Hola {{name}}:</h1>
+            <label for="">Por favor haz click <a id="link" href={{token}}>aquí</a> para confirmar tu cuenta.</label>
+            <h1>¡Gracias!</h1>
+        </div>
+    </div>
+</div>
+</body>
+</html>

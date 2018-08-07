@@ -8,11 +8,11 @@ var secret = 'nRide2018';
 
 var smtConfig = {
     host: 'in-v3.mailjet.com',
-    port: 465,
-    secure: true, // true for 465, false for other ports
+    port: 587,
+    secure: false, // secure:true for port 465, secure:false for port 587
     auth: {
-        user: 'f787bfa00af06aeedc71f0669e95c934', // generated ethereal user
-        pass: '423f49d5596186b2c927b409cd2104b2' // generated ethereal password
+        user: 'f787bfa00af06aeedc71f0669e95c934',
+        pass: '423f49d5596186b2c927b409cd2104b2'
     }
 };
 var transporter = nodemailer.createTransport(smtConfig);
@@ -68,7 +68,7 @@ exports.sendEmailActivateAccount = function (emailData, callback) {
             console.log("funcion smtConfig : "+error);
         }
         else{
-            // console.log(response)
+             console.log('envio correo para perificar cuenta')
         }
         transporter.close();
     });
@@ -126,7 +126,7 @@ exports.SendEmail = function(emailData, callback){
             console.log("funcion smtConfig : "+error);
         }
         else{
-            // console.log(response)
+             console.log(response)
         }
         transporter.close();
     });

@@ -1,4 +1,4 @@
-// 'use strict'
+ 'use strict'
 // const mongoose = require('mongoose')
 // const app = require('./app')
 // const config = require('./config')
@@ -13,6 +13,9 @@
 //     })
 // })
 //
+
+
+
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
@@ -33,6 +36,7 @@ io.on('connection', function (socket) {
              }
          });*/
         socket.broadcast.emit('message', data);
+        console.log(data);
     })
     socket.on('disconnect', function () {
         console.log('Usuario desconecado' + socket.id);

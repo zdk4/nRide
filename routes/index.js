@@ -3,6 +3,7 @@
 const express = require('express')
 const userCtrl = require('../controllers/user')// Utilizar modelo para usuario
 const university = require('../controllers/university')
+const suburb = require('../controllers/suburb')
 
 const api = express.Router()
 const portalSession= require('cookie-session');// para las cookies
@@ -61,8 +62,24 @@ api.delete('/logout', (req,res) => {
     })
 });
 
-
-
 /*---------------- Universidad ----------------*/
 api.get('/getCareer',university.getCareer)
+
+
+/*----------------- Fraccionamiento ----------------*/
+//Obtener fraccionamiento al traer cp
+api.get('/getSuburb/:cp', (req,res) => {
+    suburb.getSuburb(req.params.cp,(error) => {
+        if(error)
+        {
+            // console.log(JSON.stringify(error));
+            res.status(error).send();
+        }
+        else
+        {
+            res.status(200).send({});
+        }
+    })
+
+})
 module.exports = api

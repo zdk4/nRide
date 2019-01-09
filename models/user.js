@@ -2,8 +2,7 @@
 
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-// const bcrypt = require('bcrypt-nodejs')//libreriria para contraseña encriptada
-// const crypto = require('crypto')
+
 
 const UserNride = new Schema({
     _id: Number,

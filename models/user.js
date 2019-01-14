@@ -11,7 +11,7 @@ const UserNride = new Schema({
     createDate: Number,//checar estos antes
     Name: String,
     Addres:String,
-    State: Number,// rider 1, usuario 2    // cambiarle nombre de state por otro
+    State: Number,// usuario 1,rider 2    // cambiarle nombre de state por otro
     Birthdate: String,
     StateLives: String,
     _idStateLives: Number,//estado donde vive pero su ID
@@ -31,5 +31,16 @@ const UserNride = new Schema({
     emailValidate: Boolean,
 });
 
+const UserCar = new Schema({
+    _idOwner: Number,//id del usuario que es del carro
+    _idCar: Number,
+    brandsCar: String,//Marca de carro
+    modelCar: String,
+    colorCar: String,
+    yearColor: String,
+    licensePlate: String,//Matricula del carro (placa)
+    seating: Number // Asientos del carro
+
+});
 module.exports = mongoose.model('User',UserNride);
 

@@ -12,4 +12,4 @@ const careerUniversity = new Schema({
 
 });
 
-module.exports = mongoose.model('Careers', careerUniversity)
+module.exports = mongoose.model('Career', careerUniversity)

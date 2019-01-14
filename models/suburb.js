@@ -10,4 +10,4 @@ const suburb = new Schema({
     CP: Number
 })
 
-module.exports = mongoose.model('Subu', suburb);
+module.exports = mongoose.model('Suburb', suburb);

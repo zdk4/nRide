@@ -11,6 +11,7 @@ var server = 'https://nride.herokuapp.com/api/';
 //Para registrar un usuario
 function saveUser(req, res) {
     // app.use(formidable.parse({ keppExtensions: true}));
+    /*Checar el in archivo de json que  */
     var user = new userNride();
     var token = utl.createToken(req.body);
     user._id = (new Date()).getTime()

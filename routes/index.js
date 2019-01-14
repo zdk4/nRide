@@ -5,11 +5,18 @@ const userCtrl = require('../controllers/user')// Utilizar modelo para usuario
 const university = require('../controllers/university')
 const suburb = require('../controllers/suburb')
 
-const api = express.Router()
-const portalSession= require('cookie-session');// para las cookies
-const key = require('../keys');
-api.use(portalSession(key));
 
+const api = express.Router()
+const portalSession = require('express-session')//para las sessiones
+const redisStore = require("connect-redis")(portalSession);
+const key = require('../keys');
+
+
+var sessionMiddleware = portalSession({
+    store: new redisStore({}),
+    secret:"nRide"
+});
+api.use(sessionMiddleware);
 
 //Logi para entrar a session
 api.post('/login', (req,res) => {

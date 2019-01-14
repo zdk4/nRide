@@ -37,7 +37,7 @@ exports.createToken= function(user){
     return jwt.encode(payload, secret);
 
 };
-
+//Enviar email al activar cuenta
 exports.sendEmailActivateAccount = function (emailData, callback) {
     // template
     var options = {
@@ -73,7 +73,7 @@ exports.sendEmailActivateAccount = function (emailData, callback) {
         transporter.close();
     });
 }
-
+//Generar password
 exports.generatePassword = function(callback){
     var pass="";
     var chars = "0123456789abcdqrstuvwxyzABCDEFGHIJKLMNOP";
@@ -95,7 +95,7 @@ exports.generatePassword = function(callback){
 
 
 }
-
+//Enviar email
 exports.SendEmail = function(emailData, callback){
     var options = {
         viewEngine: {
@@ -131,7 +131,7 @@ exports.SendEmail = function(emailData, callback){
         transporter.close();
     });
 }
-
+//decodificar el token 
 exports.decodeToken = function(token, callback){
 
     try

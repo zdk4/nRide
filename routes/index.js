@@ -7,12 +7,12 @@ const suburb = require('../controllers/suburb')
 
 
 const api = express.Router()
-const portalSession = require('express-session')//para las sessiones
+const portalSession = require('express-session');//para las sessiones
 const redisStore = require("connect-redis")(portalSession);
 const key = require('../keys');
 
 
-var sessionMiddleware = portalSession({
+const sessionMiddleware = portalSession({
     store: new redisStore({}),
     secret:"nRide"
 });
@@ -23,14 +23,14 @@ api.post('/login', (req,res) => {
     userCtrl.login(req.body,(error,result) => {
         if(error)
         {
-            //console.log(JSON.stringify(error));
+          //  console.log(JSON.stringify(error));
             res.status(error).send(result);
         }
         else
         {
 
-           req.session.token = result.token;
-            // console.log(req.session);
+           req.session = result.token;
+             console.log(req.session);
             res.status(200).send({});
         }
     })
@@ -58,13 +58,13 @@ api.get('/verifyToken/:token', (req,res) => {
 api.put('/resetPassword', userCtrl.resetPassword)
 //logout
 api.delete('/logout', (req,res) => {
-    userCtrl.checkSession(req.session.token,(error) =>
+    userCtrl.checkSession(req.session,(error) =>
     {
         if(!error)
         {
-           userCtrl.logout(req.session.token);
+           userCtrl.logout(req.session);
         }
-        delete req.session.token;
+        delete req.session;
         res.status(200).send({message:'Session cerrada'});
     })
 });
